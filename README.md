@@ -1,2 +1,2 @@
 # Studies
-This repository is for studies only📚☕ 
+This repository is for studies data structure only📚☕ 

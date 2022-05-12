@@ -3,21 +3,19 @@ class Node:
         self.data = data
         self.left = None
         self.right = None
-        
+
     def __str__(self):
         return str(self.data)
 
 class BinaryTree:
-    def __init__(self, data=None, node = None):
+    def __init__(self, data = None, node = None):
         if node:
             self.root = node
         elif data:
-            node = Node(data)
-            self.root = node
+            self.root = data
         else:
             self.root = None
 
-    #percurso em ordem simétrica        
     def inorder_traversal(self, node=None):
         if node is None:
             node=self.root
@@ -27,7 +25,6 @@ class BinaryTree:
         if node.right:
             self.inorder_traversal(node.right)
 
-    #percurso em pós-ordem
     def postorder_traversal(self, node=None):
         if node is None:
             node = self.root
@@ -36,22 +33,6 @@ class BinaryTree:
         if node.right:
             self.postorder_traversal(node.right)
         print(node)
-
-    #altura da árvore
-    def height(self, node=None):
-        if node is None:
-            node = self.root
-        hleft = 0 
-        hright = 0
-        if node.left:
-            hleft = self.height(node.left)
-        if node.right:
-            hright = self.height(node.right)
-        if hright > hleft:
-            return hright + 1
-        return hleft + 1
-
-    
     
 class BinarySearchTree(BinaryTree):
     def insert(self, value):
@@ -59,15 +40,15 @@ class BinarySearchTree(BinaryTree):
         x = self.root
         while(x):
             parent = x
-            if value < x.data:
+            if value % 2 == 1:
                 x = x.left
-            else:
+            elif value % 2 == 0:
                 x = x.right
-        if parent is None:
+        if parent is None: 
             self.root = Node(value)
-        elif value < parent.data:
+        elif value % 2 == 1:
             parent.left = Node(value)
-        else:
+        elif value % 2 == 0:
             parent.right = Node(value)
 
     def search(self, value, node=0):
